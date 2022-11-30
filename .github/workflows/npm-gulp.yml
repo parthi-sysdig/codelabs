@@ -28,11 +28,12 @@ jobs:
         cd site 
         pwd
         cat package.json
-        npm install && npm install -g gulp-cli 
+        npm install 
+        npm install  gulp-cli 
 
     - name: Serve
-      working-directory: ./
+      #working-directory: ./
       run: |  
-         cd site
+         pwd
          gulp serve 
         
