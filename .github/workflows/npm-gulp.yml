@@ -22,12 +22,13 @@ jobs:
 
     - name: Build
       working-directory: ./
-      run: |
-       cd site
-       cp . .  
-       npm install && npm install -g gulp-cli 
+      run: | 
+         cd site 
+         npm install && npm install -g gulp-cli 
 
     - name: Serve
       working-directory: ./
-      run: gulp serve 
+      run: |  
+         cd site
+         gulp serve 
         
