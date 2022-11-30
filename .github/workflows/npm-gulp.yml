@@ -29,12 +29,17 @@ jobs:
         pwd
         cat package.json
         npm install 
-        npm install  gulp-cli 
+        npm install -g gulp-cli 
 
-    - name: Serve
-      #working-directory: ./
+    - name: Build the Docker image
       run: |  
-         pwd
-         cd site
-         gulp serve 
+        cd site
+        run: docker build . --file Dockerfile --tag sysdigcodelabs/test:v1
+    
+ #   - name: Serve
+      #working-directory: ./
+ #     run: |  
+ #        pwd
+ #        cd site
+ #        gulp serve 
         
