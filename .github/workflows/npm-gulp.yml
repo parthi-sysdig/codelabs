@@ -22,12 +22,12 @@ jobs:
 
     - name: Build
       #working-directory: /home/runner/work/codelabs/ 
+      #git clone https://github.com/parthi-sysdig/codelabs
+      # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
       run: | 
-        git clone https://github.com/parthi-sysdig/codelabs
-        pwd 
-        # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
         cd site 
         pwd
+        ls la 
         npm install && npm install -g gulp-cli 
 
     - name: Serve
