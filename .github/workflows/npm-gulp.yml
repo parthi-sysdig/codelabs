@@ -21,12 +21,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build
-      working-directory: /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
+      #working-directory: /home/runner/work/codelabs/ 
       run: | 
-        git clone https://github.com/googlecodelabs/tools
+        git clone https://github.com/parthi-sysdig/codelabs
         pwd 
         # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
-        cd site 
+        cd ./codelabs/site 
         npm install && npm install -g gulp-cli 
 
     - name: Serve
