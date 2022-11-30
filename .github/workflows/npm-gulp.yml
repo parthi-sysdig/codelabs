@@ -34,7 +34,7 @@ jobs:
     - name: Build the Docker image
       run: |  
         cd site
-        run: docker build . --file Dockerfile --tag sysdigcodelabs/test:v1
+        docker build . --file Dockerfile --tag sysdigcodelabs/test:v1
     
  #   - name: Serve
       #working-directory: ./
