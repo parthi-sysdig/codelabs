@@ -35,6 +35,7 @@ jobs:
       run: |  
         pwd
         docker build . --file Dockerfile --tag parthibansrinivasan/reactui:v1
+        docker push parthibansrinivasan/reactui:v1
     
  #   - name: Serve
       #working-directory: ./
