@@ -21,12 +21,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build
-      working-directory: ./codelabs/site/
+      working-directory: ./
       run: |
+       cd site
        cp . .  
-       npm install && npm install -g gulp-cli
-       gulp serve 
-      
+       npm install && npm install -g gulp-cli 
+
     - name: Serve
-      run: cd  ~/work/codelabs/codelabs/site && gulp serve 
+      working-directory: ./
+      run: gulp serve 
         
