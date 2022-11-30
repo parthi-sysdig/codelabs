@@ -24,5 +24,5 @@ jobs:
       run: npm install && npm install -g gulp-cli
       
     - name: Serve
-      run: gulp serve
+      run: cd  ~/work/codelabs/codelabs/site && gulp serve 
         
