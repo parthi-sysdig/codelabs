@@ -33,7 +33,7 @@ jobs:
 
     - name: Build the Docker image
       run: |  
-        cd site
+        pwd
         docker build . --file Dockerfile --tag sysdigcodelabs/test:v1
     
  #   - name: Serve
