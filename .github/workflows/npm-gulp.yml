@@ -34,7 +34,7 @@ jobs:
     - name: Build the Docker image
       run: |  
         pwd
-        docker build . --file Dockerfile --tag parthibsrinivasan/codelabstest:v1
+        docker build . --file Dockerfile --tag parthibansrinivasan/codelabstest:v1
     
  #   - name: Serve
       #working-directory: ./
