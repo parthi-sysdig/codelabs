@@ -26,7 +26,8 @@ jobs:
         git clone https://github.com/parthi-sysdig/codelabs
         pwd 
         # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
-        cd ./codelabs/site 
+        cd site 
+        pwd
         npm install && npm install -g gulp-cli 
 
     - name: Serve
