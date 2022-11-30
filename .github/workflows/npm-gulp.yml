@@ -27,7 +27,7 @@ jobs:
       run: | 
         cd site 
         pwd
-        ls la 
+        cat package.json
         npm install && npm install -g gulp-cli 
 
     - name: Serve
