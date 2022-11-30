@@ -3,12 +3,10 @@ name: NodeJS with Gulp
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
 
     strategy:
       matrix:
@@ -23,5 +21,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build
-      run: |
+      run: /
+        cd site/
+        npm install  
         npm install -g gulp-cli
+      
+    - name: Serve
+      run: /        
+        gulp serve
+        
