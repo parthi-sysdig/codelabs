@@ -23,8 +23,9 @@ jobs:
     - name: Build
       working-directory: ./
       run: | 
-         cd site 
-         npm install && npm install -g gulp-cli 
+        git clone https://github.com/googlecodelabs/tools
+        cd site 
+        npm install && npm install -g gulp-cli 
 
     - name: Serve
       working-directory: ./
