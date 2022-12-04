@@ -69,10 +69,10 @@ jobs:
       env: 
         PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       run: |-
-        docker tag $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
-        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
-        docker push $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
-        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        #gcloud docker tag $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
+        gcloud docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        #gcloud docker push $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
+        gcloud docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
     
     
          
