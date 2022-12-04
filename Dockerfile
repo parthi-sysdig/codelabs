@@ -1,6 +1,8 @@
 FROM node:14.20.0
 # Download repo
 WORKDIR /work/src/app 
+RUN pw
+RUN cd site/
 COPY package.json . 
 RUN npm install
 RUN npm install -g gulp-cli
