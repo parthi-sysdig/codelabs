@@ -27,7 +27,6 @@ jobs:
       run: | 
         cd site 
         pwd
-        cat package.json
         npm install 
         npm install -g gulp-cli 
 
@@ -41,12 +40,4 @@ jobs:
       uses: docker/build-push-action@v3
       with:
          push: true 
-         tags: parthibansrinivasan/reactui:v1
-         
- #   - name: Serve
-      #working-directory: ./
- #     run: |  
- #        pwd
- #        cd site
- #        gulp serve 
-        
+         tags: parthibansrinivasan/reactui:v2
