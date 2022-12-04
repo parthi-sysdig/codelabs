@@ -1,7 +1,7 @@
 FROM node:14.20.0
 # Download repo
 WORKDIR /work/src/app 
-RUN pw
+RUN pwd
 RUN cd site/
 COPY package.json . 
 RUN npm install
