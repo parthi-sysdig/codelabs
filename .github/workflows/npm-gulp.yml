@@ -11,16 +11,22 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
+        
+    env:
+      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v4
+      IMAGE_NAME: codelabs
+      GIT_TAG: v3
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout - clone repo
+      uses: actions/checkout@v3
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
+    - name: Build - NPM Install  
       #working-directory: /home/runner/work/codelabs/ 
       #git clone https://github.com/parthi-sysdig/codelabs
       # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
@@ -33,11 +39,40 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_PW }}
           
-    - name: Build and Push the image
+    - name: Docker build and Push the image
       uses: docker/build-push-action@v3
       with:
          push: true 
-         tags: parthibansrinivasan/reactui:v2
+         tags: ${{ env.DOCKER_IMAGE_NAME }}
+         
+    - name: Set-up google
+      uses: google-github-actions/setup-gcloud@master
+      with:
+         service_account_key: ${{ secrets.SA_KEY_GCP }}  
+         project_id: ${{ secrets.GCP_PROJECT_ID }}
+         export_default_credentials: true
+         
+    - name: Build docker image 
+      run: |-
+        pwd
+        docker build -t $IMAGE_NAME:latest .  
+        docker build -t $DOCKER_IMAGE_NAME:latest .  
+        
+    - name: Config docker client
+      run: |-
+        gcloud auth configure-docker --quiet
+        
+    - name: Push to GCR repo
+      env: 
+        PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      run: |-
+        docker tag $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
+        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        docker push $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:latest
+        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+    
+    
+         
