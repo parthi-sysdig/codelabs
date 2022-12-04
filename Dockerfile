@@ -1,4 +1,4 @@
-FROM node:14.20.0-slim
+FROM node:14.20.0
 # Download repo
 WORKDIR /work/src/app 
 RUN git clone https://github.com/googlecodelabs/tools
