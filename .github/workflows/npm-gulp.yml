@@ -15,7 +15,8 @@ jobs:
     env:
       DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v5
       IMAGE_NAME: codelabs
-      GIT_TAG: v5
+      GIT_TAG: v6
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
     - name: Checkout - clone repo
@@ -66,11 +67,11 @@ jobs:
         gcloud auth configure-docker --quiet
         
     - name: Push to GCR repo
-      env: 
-        PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+#     env: 
+#       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       run: |-
-        gcloud docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
-        gcloud docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
     
     
          
