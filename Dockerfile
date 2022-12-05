@@ -7,12 +7,14 @@ RUN ls
 ## change dir to folder
 RUN cd site/
 RUN cat package.json
+RUN /work/sr/app/site
+RUN ls
+RUN cat package.json
 ## install npm and gulp gli
 RUN ls
 RUN npm install
 RUN npm install -g gulp-cli
 ## COPY . . 
-RUN ls
 #RUN git clone https://github.com/googlecodelabs/tools
 # set working directory
 ## change dir to folder
