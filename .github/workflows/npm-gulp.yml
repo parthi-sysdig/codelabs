@@ -15,7 +15,7 @@ jobs:
     env:
       DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v5
       IMAGE_NAME: codelabs
-      GIT_TAG: v6
+      GIT_TAG: v1.1
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
@@ -70,8 +70,10 @@ jobs:
 #     env: 
 #       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       run: |-
-        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
-        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$GCR_IMAGE_NAME:$GIT_TAG
+        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        gcloud docker tag $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        gcloud docker push $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
     
          
