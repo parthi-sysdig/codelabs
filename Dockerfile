@@ -2,15 +2,16 @@ FROM node:14.20.0
 ## Download repo
 WORKDIR /work/src/app 
 #RUN pwd
-#COPY package.json . 
+COPY . . 
 RUN ls
 ## change dir to folder
 RUN cd site/
 RUN cat package.json
 ## install npm and gulp gli
+RUN ls
 RUN npm install
 RUN npm install -g gulp-cli
-COPY . . 
+## COPY . . 
 RUN ls
 #RUN git clone https://github.com/googlecodelabs/tools
 # set working directory
