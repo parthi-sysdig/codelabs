@@ -1,13 +1,12 @@
 FROM node:14.20.0
-WORKDIR /work/src/app 
+WORKDIR /usr/src/app
 RUN ls
-COPY ./site/package.json .
+COPY ./site /usr/src/app
 RUN ls
-RUN npm install
-RUN npm install -g gulp-cli
+RUN npm install && RUN npm install -g gulp-cli
 RUN ls
 #COPY . /usr/src/app
-COPY . . 
+COPY . /usr/src/app
 RUN ls
 #RUN git clone https://github.com/googlecodelabs/tools
 EXPOSE 8000
