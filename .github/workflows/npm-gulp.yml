@@ -48,22 +48,19 @@ jobs:
          push: true 
          tags: ${{ env.DOCKER_IMAGE_NAME }}
          
-    - name: Set-up google
-      uses: google-github-actions/setup-gcloud@v1
-      with:
-         service_account_key: ${{ secrets.SA_KEY_GCP }}  
-         project_id: ${{ secrets.GCP_PROJECT_ID }}
-         export_default_credentials: true
-
     - name: Google Auth
 #     uses: google-github-actions/setup-gcloud@main
       uses: google-github-actions/auth@v1
       with:
-         service_account_key: ${{ secrets.SA_KEY_GCP }}  
-         project_id: ${{ secrets.GCP_PROJECT_ID }}
-#       workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-#       service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+         credentials_json: ${{ secrets.SA_KEY_GCP }}  
+#        project_id: ${{ secrets.GCP_PROJECT_ID }}
+#        service_account_key: ${{ secrets.SA_KEY_GCP }}  
+#        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+#        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
          
+    - name: Set-up google
+      uses: google-github-actions/setup-gcloud@v1
+
     - name: Build docker image 
       run: |-
         docker build -t $DOCKER_IMAGE_NAME .     
