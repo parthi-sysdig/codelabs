@@ -14,7 +14,7 @@ RUN cat package.json
 RUN ls
 RUN npm install
 RUN npm install -g gulp-cli
-## COPY . . 
+COPY . . 
 #RUN git clone https://github.com/googlecodelabs/tools
 # set working directory
 ## change dir to folder
