@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 RUN ls
 COPY ./site /usr/src/app
 RUN ls
-RUN npm install && RUN npm install -g gulp-cli
+RUN npm install && npm install -g gulp-cli
 RUN ls
 #COPY . /usr/src/app
 COPY . /usr/src/app
