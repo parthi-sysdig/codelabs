@@ -78,16 +78,15 @@ jobs:
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
-    - id: deploy
-      uses: google-github-actions/deploy-cloudrun@v1
-      with:
-        service: codelabs
-        image: gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        region: us-east1
-        port: 8000
+#    - id: deploy
+#      uses: google-github-actions/deploy-cloudrun@v1
+#      with:
+#        service: codelabs
+#        image: gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+#        project_id: ${{ secrets.GCP_PROJECT_ID }}
+#        region: us-east1
 
-    - name: Run Deploy Use output'
-      run: 'curl "${{ steps.deploy.outputs.url }}"'
+#    - name: Run Deploy Use output'
+#      run: 'curl "${{ steps.deploy.outputs.url }}"'
     
          
