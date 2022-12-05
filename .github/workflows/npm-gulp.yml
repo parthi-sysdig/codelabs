@@ -57,7 +57,6 @@ jobs:
          
     - name: Build docker image 
       run: |-
-        docker build -t $IMAGE_NAME:latest .  
         docker build -t $DOCKER_IMAGE_NAME .   
         
         
@@ -69,12 +68,10 @@ jobs:
 #     env: 
 #       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       run: |-
-        gcloud docker tag   gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-        gcloud docker tag   $DOCKER_IMAGE_NAME  
-        gcloud docker tag   gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        gcloud docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-        gcloud docker push  $DOCKER_IMAGE_NAME 
-        gcloud docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        docker tag   $DOCKER_IMAGE_NAME   gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        docker tag   $DOCKER_IMAGE_NAME   gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
     
          
