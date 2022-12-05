@@ -3,7 +3,7 @@ FROM node:14.20.0
 WORKDIR /work/src/app 
 COPY . .
 RUN ls
-WORKDIR /work/src/app/codelabs/site
+RUN cd ./site
 #COPY ./site .
 RUN ls
 ## change dir to folder
