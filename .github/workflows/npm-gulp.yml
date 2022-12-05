@@ -83,6 +83,9 @@ jobs:
       with:
         service: codelabs
         image: gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        region: us-east1
+        port: 8000
 
     - name: Run Deploy Use output'
       run: 'curl "${{ steps.deploy.outputs.url }}"'
