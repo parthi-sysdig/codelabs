@@ -13,9 +13,9 @@ jobs:
         node-version: [14.x]
         
     env:
-      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.3
+      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.4
       IMAGE_NAME: codelabs
-      GIT_TAG: v1.3
+      GIT_TAG: v1.4
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
