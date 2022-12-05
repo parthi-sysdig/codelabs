@@ -58,7 +58,8 @@ jobs:
     - name: Build docker image 
       run: |-
         docker build -t $IMAGE_NAME:latest .  
-        docker build -t $DOCKER_IMAGE_NAME .  
+        docker build -t $DOCKER_IMAGE_NAME .   
+        
         
     - name: Config docker client
       run: |-
@@ -68,10 +69,10 @@ jobs:
 #     env: 
 #       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       run: |-
-        docker tag $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-        gcloud docker tag $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        docker push $GCR_IMAGE_NAME:$GIT_TAG gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-        gcloud docker push $GCR_IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        gcloud docker tag  $IMAGE_NAME:GIT_TAG   gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        gcloud docker tag  $IMAGE_NAME:latest    gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        gcloud docker push $IMAGE_NAME:$GIT_TAG  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        gcloud docker push $IMAGE_NAME:latest    gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
     
          
