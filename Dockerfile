@@ -5,9 +5,9 @@ WORKDIR /work/src/app
 COPY . . 
 RUN ls
 ## change dir to folder
-RUN cd site/
+#RUN cd site/
 RUN cat package.json
-RUN /work/sr/app/site
+WORKDIR /work/sr/app/codelabs/site
 RUN ls
 RUN cat package.json
 ## install npm and gulp gli
