@@ -1,10 +1,10 @@
 FROM node:14.20.0
 # Download repo
 WORKDIR /work/src/app 
-RUN cd codelabs/
-RUN pwd
+RUN ls 
+#RUN cd codelabs/
 RUN cd site/
-RUN pwd
+#RUN pwd
 COPY package.json . 
 RUN npm install
 RUN npm install -g gulp-cli
