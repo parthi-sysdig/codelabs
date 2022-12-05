@@ -8,5 +8,5 @@ RUN npm install -g gulp-cli
 #COPY . . 
 RUN ls
 #RUN git clone https://github.com/googlecodelabs/tools
-EXPOSE 8080
+EXPOSE 8000
 CMD [ "gulp", "serve" ]
