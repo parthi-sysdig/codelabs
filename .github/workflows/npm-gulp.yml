@@ -13,8 +13,9 @@ jobs:
         node-version: [14.x]
         
     env:
-      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.6
       IMAGE_NAME: codelabs
+      SERVICE_NAME: codelabs16
+      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.6
       GIT_TAG: v1.6
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
@@ -53,7 +54,7 @@ jobs:
     - id: deploy
       uses: google-github-actions/deploy-cloudrun@v1
       with:
-         service: codelabs$GIT_TAG
+         service: $SERVICE_NAME
          image: gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
          project_id: ${{ secrets.GCP_PROJECT_ID }}
          region: us-east1
