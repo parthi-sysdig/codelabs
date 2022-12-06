@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+     
     strategy:
       matrix:
         node-version: [14.x]
@@ -50,7 +54,7 @@ jobs:
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
-    - id: deploy
+    - name: Deploy to Google cloud run 
       uses: google-github-actions/deploy-cloudrun@v1
       with:
          service: codelabs16
