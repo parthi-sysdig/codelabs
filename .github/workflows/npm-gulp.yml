@@ -63,8 +63,8 @@ jobs:
 #         image: gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 #         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Run Deploy Use output'
-      run: 'curl "${{ steps.deploy.outputs.url }}"'
+    - name: Run Deploy Use output
+      run: curl ${{ steps.deploy.outputs.url }}
     
 ##   DONOT REMOVE IT
 #    - name: Use Node.js ${{ matrix.node-version }}
