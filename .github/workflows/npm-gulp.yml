@@ -18,8 +18,9 @@ jobs:
         
     env:
       IMAGE_NAME: codelabs
-      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.6
-      GIT_TAG: v1.6
+      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.7
+      GIT_TAG: v1.7
+      SERVICE_NAME: codelabs
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
@@ -54,21 +55,18 @@ jobs:
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
-    - id: deploy
-      name: Deploy to Google cloud run 
-      uses: google-github-actions/deploy-cloudrun@v1
-      with:
-         service: codelabs16
-         image: gcr.io/sd-test-368500/codelabs:v1.6
-         region: us-east1
+#   - id: deploy
+#     name: Deploy to Google cloud run 
+#     uses: google-github-actions/deploy-cloudrun@v1
+#     with:
+#        service: codelabs16
+#        image: gcr.io/sd-test-368500/codelabs:v1.6
+#        region: us-east1
 #         image: gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-#         project_id: ${{ secrets.GCP_PROJECT_ID }}
+#         project_id: ${{ secr ets.GCP_PROJECT_ID }}
 
-    - name: Use deploy output
-      run: 'curl "${{ steps.deploy.outputs.url }}"'
- 
-#    - name: Run Deploy Use output
-#      run: curl ${{ steps.deploy.outputs.url }}
+#    - name: Use deploy output
+#      run: 'curl "${{ steps.deploy.outputs.url }}"'
     
 ##   DONOT REMOVE IT
 #    - name: Use Node.js ${{ matrix.node-version }}
