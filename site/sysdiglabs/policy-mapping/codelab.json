@@ -1,0 +1,31 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-12-06T03:31:03Z",
+  "id": "policy-mapping",
+  "duration": 24,
+  "title": "Mapping Custom to Managed Secure Policies",
+  "authors": "Parthi",
+  "summary": "In this codelab, you'll create a web report mapping custom policies to managed policies in Sysdig secure",
+  "source": "1zCg96Edj_A9vu5F-KqfYJ33kl3hk5jbqhrsbshDyc-E",
+  "theme": "sysdig",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "sysdig",
+    "secure",
+    "policy",
+    "runtime",
+    "mapping"
+  ],
+  "tags": [
+    "policy",
+    "runtime",
+    "secure",
+    "sysdig"
+  ],
+  "url": "policy-mapping"
+}
