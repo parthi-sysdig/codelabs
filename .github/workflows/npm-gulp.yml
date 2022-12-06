@@ -1,4 +1,4 @@
-name: NodeJS with Gulp
+name: NodeJS with Gulp, deploy on Google Cloud Run
 
 on:
   push:
@@ -13,57 +13,29 @@ jobs:
         node-version: [14.x]
         
     env:
-      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.5
+      DOCKER_IMAGE_NAME: parthibansrinivasan/reactui:v1.6
       IMAGE_NAME: codelabs
-      GIT_TAG: v1.5
+      GIT_TAG: v1.6
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
 
     steps:
     - name: Checkout - clone repo
       uses: actions/checkout@v3
-
-#    - name: Use Node.js ${{ matrix.node-version }}
-#      uses: actions/setup-node@v3
-#      with:
-#        node-version: ${{ matrix.node-version }}
-#
-#    - name: Build - NPM Install  
-      #working-directory: /home/runner/work/codelabs/ 
-      #git clone https://github.com/parthi-sysdig/codelabs
-      # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
-#      run: | 
-#        cd site 
-#        npm install 
-#        npm install -g gulp-cli 
-
-    - name: Login to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_PW }}
-          
-    - name: Docker build and Push the image
-      uses: docker/build-push-action@v3
-      with:
-         push: true 
-         tags: ${{ env.DOCKER_IMAGE_NAME }}
          
     - name: Google Auth
-#     uses: google-github-actions/setup-gcloud@main
       uses: google-github-actions/auth@v1
       with:
          credentials_json: ${{ secrets.SA_KEY_GCP }}  
 #        project_id: ${{ secrets.GCP_PROJECT_ID }}
-#        service_account_key: ${{ secrets.SA_KEY_GCP }}  
 #        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
 #        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
          
     - name: Set-up google
       uses: google-github-actions/setup-gcloud@v1
 
-#    - name: Build docker image 
-#      run: |-
-#        docker build -t $DOCKER_IMAGE_NAME .     
+    - name: Build docker image 
+      run: |-
+        docker build -t $DOCKER_IMAGE_NAME .     
         
     - name: Config docker client
       run: |-
@@ -78,15 +50,41 @@ jobs:
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push  gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     
-#    - id: deploy
-#      uses: google-github-actions/deploy-cloudrun@v1
-#      with:
-#        service: codelabs
-#        image: gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-#        project_id: ${{ secrets.GCP_PROJECT_ID }}
-#        region: us-east1
+    - id: deploy
+      uses: google-github-actions/deploy-cloudrun@v1
+      with:
+         service: codelabs$GIT_TAG
+         image: gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+         project_id: ${{ secrets.GCP_PROJECT_ID }}
+         region: us-east1
 
 #    - name: Run Deploy Use output'
 #      run: 'curl "${{ steps.deploy.outputs.url }}"'
     
-         
+##   DONOT REMOVE IT
+#    - name: Use Node.js ${{ matrix.node-version }}
+#      uses: actions/setup-node@v3
+#      with:
+#        node-version: ${{ matrix.node-version }}
+#
+#    - name: Build - NPM Install  
+      #working-directory: /home/runner/work/codelabs/ 
+      #git clone https://github.com/parthi-sysdig/codelabs
+      # /home/runner/work/codelabs/codelabs/site/node_modules/node-sass
+#      run: | 
+#        cd site 
+#        npm install 
+#        npm install -g gulp-cli 
+
+
+#    - name: Login to Docker Hub
+#      uses: docker/login-action@v2
+#      with:
+#        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+#        password: ${{ secrets.DOCKER_PW }}
+          
+#    - name: Docker build and Push the image
+#      uses: docker/build-push-action@v3
+#      with:
+#         push: true 
+#         tags: ${{ env.DOCKER_IMAGE_NAME }}
