@@ -10,4 +10,4 @@ RUN ls
 #RUN ls
 #RUN git clone https://github.com/googlecodelabs/tools
 EXPOSE 8000
-CMD [ "gulp", "serve","--codelabs-dir=sysdiglabs"]
+CMD [ "gulp", "serve:dist","--codelabs-dir=sysdiglabs"]
